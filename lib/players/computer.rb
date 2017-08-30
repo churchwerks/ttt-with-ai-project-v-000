@@ -18,7 +18,9 @@ module Players
       case board.turn_count.even?
       when true
         if board.turn_count < 4
-          if board.valid_move?("5")
+          if board.valid_move?("5") && board.turn_count == 0
+            move(board)
+          elsif board.valid_move?("5")
             user_input = "5"
           elsif board.valid_move?("1")
             user_input = "1"
@@ -47,8 +49,21 @@ module Players
           end
         end
         when false
-        #binding.pry
-        move(board)
+          if board.valid_move?("5")
+            user_input = "5"
+          elsif board.cells[4] == "O"
+            move(board)
+          elsif board.valid_move?("1")
+            user_input = "1"
+          elsif board.cells[5] == "X"
+            move(board)
+          elsif board.valid_move?("3")
+            user_input = "3"
+          elsif board.valid_move?("7")
+            user_input = "7"
+          else board.valid_move?("9")
+            user_input = "9"
+          end
       end
     end
   end

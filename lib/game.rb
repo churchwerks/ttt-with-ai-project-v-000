@@ -24,7 +24,7 @@ class Game
 
   # Helper Method
   def over?
-    self.board.display
+    #self.board.display
     1.times { |i| puts ""}
     t = Time.now
     #sleep(t + 1 - Time.now)
@@ -90,6 +90,7 @@ class Game
     # Helper Method
     def logical_play
       self.logic_turn until over?
+      self.board.display
       1.times { |i| puts ""}
       puts winner ?  "Congratulations #{winner} !" : "Cat's Game!"
       1.times { |i| puts ""}
