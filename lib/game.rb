@@ -27,7 +27,7 @@ class Game
     self.board.display
     1.times { |i| puts ""}
     t = Time.now
-    sleep(t + 1 - Time.now)
+    #sleep(t + 1 - Time.now)
   	won? || draw?
   end
 
