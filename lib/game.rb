@@ -62,9 +62,9 @@ class Game
   end
   ###### Computer vs Logic game code below ######
       def logic_turn
-        index = self.current_player.logical_play(@board)
+        input = self.current_player.logical_play(@board)
 
-        index ? self.board.update(index, self.current_player) : self.logic_turn
+        input ? self.board.update(input, self.current_player) : self.logic_turn
       end
       # Helper Method
       def logical_play
