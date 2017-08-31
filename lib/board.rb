@@ -19,11 +19,10 @@ class Board
   end
   # Helper Method
   def input_to_index(user_input)
-    user_input.to_i - 1
+    index = user_input.to_i - 1
   end
 
-  def position(user_input)
-    index = input_to_index(user_input)
+  def position(index)
     self.cells[index]
   end
 
@@ -39,27 +38,22 @@ class Board
   end
 
   # Helper Method
-  def taken?(user_input)
-    #binding.pry
-    index = input_to_index(user_input)
+  def taken?(index)
     !(self.cells[index].nil? || self.cells[index] == " ")
   end
 
   # Helper Method
-  def valid_move?(user_input)
-    index = input_to_index(user_input)
-    #binding.pry
-    index.between?(0, 8) && !taken?(user_input)
+  def valid_move?(index)
+    index.between?(0, 8) && !taken?(index)
   end
 
-  def update(user_input, current_player)
-    valid_move?(user_input) ? move(user_input, current_player) : nil
+  def update(index, current_player)
+    valid_move?(index) ? move(index, current_player) : nil
     #binding.pry
   end
 
   # Helper Method
-    def move(user_input, current_player)
-      index = input_to_index(user_input)
+    def move(index, current_player)
       self.cells[index] = current_player.token
     end
 end

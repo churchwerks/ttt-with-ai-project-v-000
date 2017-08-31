@@ -21,8 +21,8 @@ module Players
 
     def random_move(board)
       prng = Random.new
-      user_input = prng.rand(9) + 1
-      board.valid_move?(user_input) ? user_input.to_s : nil
+      index = prng.rand(9) + 1
+      board.valid_move?(index) ? input : nil
     end
 
     def move_one(board)
@@ -30,33 +30,27 @@ module Players
     end
 
     def move_two(board)
-      if board.valid_move?("5")
-        user_input = "5"
-      elsif board.valid_move?("1")
-        user_input = "1"
-      elsif board.valid_move?("3")
-        user_input = "3"
-      elsif board.valid_move?("7")
-        user_input = "7"
-      elsif board.valid_move?("9")
-        user_input = "9"
+      if board.valid_move?(4)
+        input = 4
+      elsif board.valid_move?(0)
+        input = 0
+      elsif board.valid_move?(2)
+        input = 2
+      elsif board.valid_move?(6)
+        input = 6
+      elsif board.valid_move?(8)
+        input = 8
       end
     end
 
     def move_three(board)
       if two_in_row?(board) != nil
         two_in_row?(board).each do |index|
-          user_input = index
-          user_input += 1
-          user_input.to_s
-          binding.pry
-          if board.valid_move?(user_input)
-            binding.pry
-            user_input
+          if board.valid_move?(index)
+            input = index
           end
         end
       end
-      move_two(board)
     end
 
     def logical_play(board)
@@ -72,22 +66,21 @@ module Players
         #binding.pry
       when 3
         move_three(board)
-        binding.pry
       when 4
         move_three(board)
-        binding.pry
+        #binding.pry
       when 5
         move_three(board)
-        binding.pry
+        #binding.pry
       when 6
         move_three(board)
-        binding.pry
+        #binding.pry
       when 7
         move_three(board)
-        binding.pry
+        #binding.pry
       when 8
         move_three(board)
-        binding.pry
+        #binding.pry
       end
     end
   end
