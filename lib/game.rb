@@ -83,7 +83,7 @@ class Game
 
 ###### Computer vs Logic game code below ######
     def logic_turn
-      user_input = self.current_player.logical_move(@board)
+      user_input = self.current_player.move(@board)
       # check if user_input is valid
       user_input ? self.board.update(user_input, self.current_player) : self.logic_turn
     end
