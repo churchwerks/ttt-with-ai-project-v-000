@@ -10,27 +10,57 @@ module Players
       [2,5,8],
       [0,4,8],
       [6,4,2]]
-
+    DIA_CORNER = [[0, 8], [3, 7]]
       def move(board)
-      #call methods below based on who's turn it is
-      #logical_play(board)
-      # Pass input to Game
-      #board.valid_move?(user_input) ? input : nil
-      prng = Random.new
-      input = prng.rand(9) + 1
-      input.to_s
+        #call methods below based on turn_count
+        case board.turn_count
+          when 0
+            move_one(board)
+            #binding.pry
+          when 1
+            move_two(board)
+            #binding.pry
+          when 2
+            move_two(board)
+            #binding.pry
+          when 3
+            move_three(board)
+          when 4
+            move_three(board)
+            #binding.pry
+          when 5
+            move_three(board)
+            #binding.pry
+          when 6
+            move_three(board)
+            #binding.pry
+          when 7
+            move_three(board)
+            #binding.pry
+          when 8
+            move_three(board)
+            #binding.pry
+          end
       end
 
     def two_in_row?(board)
       WIN_COMBO.find do |win|
-       board.cells[win[0]] == board.cells[win[1]] && board.cells[win[0]] != " " || board.cells[win[0]] == board.cells[win[2]] && board.cells[win[2]] != " " || board.cells[win[1]] == board.cells[win[2]] && board.cells[win[1]] != " "
+       ((board.cells[win[0]] == board.cells[win[1]]) && board.cells[win[2]] == " " && board.cells[win[0]] != " ") ||
+       ((board.cells[win[0]] == board.cells[win[2]]) && board.cells[win[1]] == " " && board.cells[win[0]] != " ") ||
+       ((board.cells[win[1]] == board.cells[win[2]]) && board.cells[win[0]] == " " && board.cells[win[1]] != " ")
+      end
+    end
+
+    def opposite_corners(board)
+      DIA_CORNER.find do |dia|
+        board.cells[win[0]] == board.cells[win[1]]
       end
     end
 
     def random_move(board)
       prng = Random.new
-      user_input = prng.rand(9) + 1
-
+      input = prng.rand(9) + 1
+      input.to_s
     end
 
     def move_one(board)
@@ -39,29 +69,56 @@ module Players
 
     def move_two(board)
       if board.valid_move?("5")
-        user_input = "5"
+        input = "5"
       elsif board.valid_move?("1")
-        user_input = "1"
+        input = "1"
       elsif board.valid_move?("3")
-        user_input = "3"
+        input = "3"
       elsif board.valid_move?("7")
-        user_input = "7"
+        input = "7"
       elsif board.valid_move?("9")
-        user_input = "9"
+        input = "9"
       end
     end
 
     def move_three(board)
-      if two_in_row?(board) != nil
-        two_in_row?(board).each do |index|
-          user_input = index
-          (user_input +=1).to_s
-          if board.valid_move?(user_input)
-            user_input
-          else
-            move_two(board)
-          end
+      if opposite_corners(board) == nil
+        if board.valid_move?("1")
+          input = "1"
+        elsif board.valid_move?("3")
+          input = "3"
+        elsif board.valid_move?("7")
+          input = "7"
+        elsif board.valid_move?("9")
+          input = "9"
         end
+      else
+        index = block.detect { |index| board.cells[index] != " " }
+        case index
+        when 0
+          
+        end
+
+      end
+    end
+
+    def move_four(board)
+      block = two_in_row?(board)
+      if block == nil
+        move_two(board)
+      else
+        index = block.detect { |index| board.cells[index] == " " }
+        input = (index +=1).to_s
+      end
+    end
+
+    def move_five(board)
+      block = two_in_row?(board)
+      if block == nil
+        move_two(board)
+      else
+        index = block.detect { |index| board.cells[index] == " " }
+        input = (index +=1).to_s
       end
     end
 
