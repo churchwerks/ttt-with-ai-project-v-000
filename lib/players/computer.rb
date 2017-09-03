@@ -69,9 +69,9 @@ module Players
         when 5
           move_block(board)
         when 6
-          random_move(board)
+          move_block(board)
         when 7
-          random_move(board)
+          move_block(board)
         when 8
           random_move(board)
         end
@@ -137,11 +137,8 @@ module Players
         block = two_in_row?(board)
         if block == nil && move_interior(board) != nil
           move_interior(board)
-        elsif move_interior(board) == nil
-          move_block_corner(board)
         else
-          index = block.detect { |index| board.cells[index] == " " }
-          input = (index +=1).to_s
+          move_block_corner(board)
         end
       end
 
