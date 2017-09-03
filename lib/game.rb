@@ -52,7 +52,7 @@ class Game
 
   # Helper Method
   def turn
-    puts "Please enter a number between(1-9):"
+    #puts "Please enter a number between(1-9):"
     #get input
     user_input = self.current_player.move(@board)
     # check if user_input is valid
@@ -83,9 +83,12 @@ class Game
 
 ###### Computer vs Logic game code below ######
     def logic_turn
+      #binding.pry
       user_input = self.current_player.move(@board)
+      self.board.update(user_input, self.current_player)
+      #user_input = self.current_player.move(@board)
       # check if user_input is valid
-      user_input ? self.board.update(user_input, self.current_player) : self.logic_turn
+      #user_input ? self.board.update(user_input, self.current_player) : self.logic_turn
     end
     # Helper Method
     def logical_play

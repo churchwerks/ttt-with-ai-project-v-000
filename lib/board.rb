@@ -19,10 +19,12 @@ class Board
   end
   # Helper Method
   def input_to_index(user_input)
+    #binding.pry
     user_input.to_i - 1
   end
 
   def position(user_input)
+    #binding.pry
     index = input_to_index(user_input)
     self.cells[index]
   end
@@ -35,6 +37,7 @@ class Board
 
   # Helper Method
   def turn_count
+    #binding.pry
     self.cells.count{ |token| token == "X" || token == "O" }
   end
 
@@ -47,14 +50,14 @@ class Board
 
   # Helper Method
   def valid_move?(user_input)
-    index = input_to_index(user_input)
     #binding.pry
+    index = input_to_index(user_input)
     index.between?(0, 8) && !taken?(user_input)
   end
 
   def update(user_input, current_player)
-    valid_move?(user_input) ? move(user_input, current_player) : nil
     #binding.pry
+    valid_move?(user_input) ? move(user_input, current_player) : nil
   end
 
   # Helper Method
