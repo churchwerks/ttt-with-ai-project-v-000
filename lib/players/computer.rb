@@ -95,15 +95,16 @@ module Players
 
       def move_two(board)
         if diagonal(board) != nil
-          binding.pry
           case diagonal(board)[0]
           when 0
               input = "3"
           when 2
               input = "1"
           end
+        elsif board.valid_move?("5")
+          input = "5"
         else
-          move_block(board)
+          move_corner(board)
         end
       end
 

@@ -26,8 +26,6 @@ class Game
   def over?
     self.board.display
     1.times { |i| puts ""}
-    t = Time.now
-    sleep(t + 1 - Time.now)
   	won? || draw?
   end
 
@@ -62,6 +60,8 @@ class Game
   # Helper Method
   def play
     turn until over?
+    #t = Time.now
+    #sleep(t + 1 - Time.now)
     puts winner ?  "Congratulations #{winner}!" : "Cat's Game!"
   end
 
